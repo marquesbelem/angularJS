@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/esstilo.css">
+	<title>Lista de Professores</title>
+</head>
+<body ng-app="listaProfessores" ng-controller="listaController">
+
+	<input class="form-control" type="text" ng-model="criterioBusca" placeholder="O que está buscando?">
+
+		<table ng-show="contatos.length > 0" class="table table-striped">
+			<tr>
+				<th></th>
+				<th><a href="" ng-click="ordenarPor()">Nome</a></th>
+				<th>Telefone</th>
+				<th>Operadora</th>
+				<th><a href="" ng-click="ordenarPor()">Formação</a></th>
+				<th><a href="" ng-click="ordenarPor()">Materia</a></th>
+			</tr>
+			<tr ng-repeat="contato in contatos | filter:criterioBusca | orderBy:criterioOrdena:direcaoOrdena">
+				<td><input type="checkbox" ng-model="contato.selecionado"></td>
+				<td>{{contato.nome}}</td>
+				<td>{{contato.telefone}}</td>
+				<td>{{contato.operadora.nome}}</td>
+				<td>{{contato.formacao.nome}}</td>
+				<td>{{contato.materia}}</td>
+			</tr>
+		</table>
+		<button ng-click="apagar(contatos)" class="btn btn-danger" ng-show="isContatoSelecionado(contatos)">Apagar </button>
+		
+	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+	<script src="http://code.angularjs.org/1.6.0/angular-route.js"></script>
+	<script type="text/javascript" src="js/programa.js"></script>
+</body>
+</html>
